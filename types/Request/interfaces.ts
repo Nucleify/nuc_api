@@ -7,7 +7,7 @@ export interface ApiHandleOptionsInterface<T> {
   id?: string | number | null
   loading?: boolean
   setLoading?: (value: boolean) => void
-  onSuccess: (data: T) => void
+  onSuccess: (data: T) => void | Promise<void>
 }
 
 export interface ApiRequestOptions {

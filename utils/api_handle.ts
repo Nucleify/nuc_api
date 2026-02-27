@@ -27,9 +27,9 @@ export async function apiHandle<T>({
     }
 
     if (hasDataProp(response)) {
-      onSuccess(response.data)
+      await onSuccess(response.data)
     } else {
-      onSuccess(response)
+      await onSuccess(response)
     }
   } catch (error) {
     apiErrors(error)
