@@ -5,7 +5,7 @@ import type { ApiResponseType, HttpMethodType } from 'atomic'
 export async function apiRequest<T>(
   url: string,
   method: HttpMethodType = 'GET',
-  data: object | null = null,
+  data: object | FormData | null = null,
   id: string | number | null = null,
   params: Record<string, unknown> = {}
 ): Promise<ApiResponseType<T>> {
@@ -22,9 +22,14 @@ export async function apiRequest<T>(
     const xsrfToken = useCookie('XSRF-TOKEN')
     xsrfTokenValue = xsrfToken.value ?? undefined
   }
+  const isFormData = data instanceof FormData
+
   let headers: Record<string, string> = {
     Accept: 'application/json',
-    'Content-Type': 'application/json',
+  }
+
+  if (!isFormData) {
+    headers['Content-Type'] = 'application/json'
   }
   if (xsrfTokenValue) {
     headers['X-XSRF-TOKEN'] = xsrfTokenValue
