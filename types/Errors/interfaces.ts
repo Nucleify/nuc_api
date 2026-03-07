@@ -1,4 +1,4 @@
-import type { ApiErrorsFunctionType } from 'atomic'
+import type { ApiErrorsFunctionType } from 'nucleify'
 
 export interface UseApiErrorsInterface {
   apiErrors: ApiErrorsFunctionType

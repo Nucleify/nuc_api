@@ -1,14 +1,14 @@
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 
-import * as atomic from 'atomic'
+import * as nucleify from 'nucleify'
 
 describe('apiRequest', () => {
   beforeEach(() => vi.clearAllMocks())
 
   it('calls $fetch with all HTTP methods and returns response', async () => {
-    for (const method of atomic.httpMethods) {
-      atomic.mockGlobalFetch(vi, { ok: method })
-      const res = await atomic.apiRequest('/api/test', method, { a: 1 })
+    for (const method of nucleify.httpMethods) {
+      nucleify.mockGlobalFetch(vi, { ok: method })
+      const res = await nucleify.apiRequest('/api/test', method, { a: 1 })
       expect(
         (globalThis as unknown as { $fetch: Mock }).$fetch
       ).toHaveBeenCalledWith(
@@ -20,8 +20,8 @@ describe('apiRequest', () => {
   })
 
   it('calls $fetch with id in url', async () => {
-    atomic.mockGlobalFetch(vi, { id: 2 })
-    await atomic.apiRequest('/api/test', 'GET', null, 2)
+    nucleify.mockGlobalFetch(vi, { id: 2 })
+    await nucleify.apiRequest('/api/test', 'GET', null, 2)
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith('/api/test/2', expect.anything())

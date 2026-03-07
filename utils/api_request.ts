@@ -1,6 +1,6 @@
 import { useCookie, useRequestHeaders } from 'nuxt/app'
 
-import type { ApiResponseType, HttpMethodType } from 'atomic'
+import type { ApiResponseType, HttpMethodType } from 'nucleify'
 
 export async function apiRequest<T>(
   url: string,

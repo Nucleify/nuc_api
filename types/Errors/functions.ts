@@ -1,4 +1,4 @@
-import type { ErrorResponseInterface } from 'atomic'
+import type { ErrorResponseInterface } from 'nucleify'
 
 export type ApiErrorsFunctionType = (
   error: ErrorResponseInterface | Error | unknown

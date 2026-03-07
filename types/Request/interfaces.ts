@@ -1,4 +1,4 @@
-import type { HttpMethodType } from 'atomic'
+import type { HttpMethodType } from 'nucleify'
 
 export interface ApiHandleOptionsInterface<T> {
   url: string
