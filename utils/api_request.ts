@@ -37,6 +37,19 @@ export async function apiRequest<T>(
 
   if (import.meta.client) {
     headers['Referer-Slug'] = window.location.pathname
+    try {
+      const { useSupabaseClient } = await import(
+        '../../../nuxt/composables/supabase/client'
+      )
+      const supabase = useSupabaseClient()
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+      if (session?.access_token)
+        headers.Authorization = `Bearer ${session.access_token}`
+    } catch {
+      // composable missing in non-Nuxt tests
+    }
   }
 
   if (import.meta.server) {

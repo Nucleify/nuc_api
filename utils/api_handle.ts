@@ -22,7 +22,10 @@ export async function apiHandle<T>({
 
     function hasDataProp(response: unknown): response is { data: T } {
       return (
-        typeof response === 'object' && response !== null && 'data' in response
+        typeof response === 'object' &&
+        response !== null &&
+        !Array.isArray(response) &&
+        'data' in response
       )
     }
 
