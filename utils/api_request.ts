@@ -38,9 +38,7 @@ export async function apiRequest<T>(
   if (import.meta.client) {
     headers['Referer-Slug'] = window.location.pathname
     try {
-      const { useSupabaseClient } = await import(
-        '../../../nuxt/composables/supabase/client'
-      )
+      const { useSupabaseClient } = await import('nuc_client')
       const supabase = useSupabaseClient()
       const {
         data: { session },
