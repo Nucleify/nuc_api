@@ -15,7 +15,6 @@ import {
   apiOk,
   fromScopeError,
   fromSupabaseError,
-  fromThrown,
 } from './response'
 
 export type { ApiContext, Json } from 'nuc_server'

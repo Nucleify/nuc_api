@@ -3,16 +3,13 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import * as nucleify from 'nucleify'
 
 describe('apiHandle', () => {
-  let onSuccess: ReturnType<typeof vi.fn>,
-    setLoading: ReturnType<typeof vi.fn>,
-    apiHandle: typeof nucleify.apiHandle,
-    apiErrors: ReturnType<typeof vi.fn>
+  let onSuccess: ReturnType<typeof vi.fn>
+  let setLoading: ReturnType<typeof vi.fn>
+  let apiHandle: typeof nucleify.apiHandle
 
-  beforeEach(async () => {
+  beforeEach(() => {
     onSuccess = vi.fn()
     setLoading = vi.fn()
-    apiErrors = vi.fn()
-    vi.spyOn(nucleify, 'useApiErrors').mockReturnValue({ apiErrors })
     apiHandle = nucleify.apiHandle
   })
 
@@ -30,8 +27,18 @@ describe('apiHandle', () => {
   })
 
   it('calls apiErrors on error', async () => {
-    vi.spyOn(nucleify, 'apiRequest').mockRejectedValueOnce(new Error('fail'))
-    await apiHandle({ url: '/api/test', onSuccess, setLoading })
-    expect(apiErrors).toHaveBeenCalled()
+    const error = new Error('fail')
+    const apiErrorsSpy = vi
+      .spyOn(nucleify, 'apiErrors')
+      .mockImplementation((requestError) => {
+        throw requestError
+      })
+
+    vi.spyOn(nucleify, 'apiRequest').mockRejectedValueOnce(error)
+
+    await expect(
+      apiHandle({ url: '/api/test', onSuccess, setLoading })
+    ).rejects.toThrow('fail')
+    expect(apiErrorsSpy).toHaveBeenCalledWith(error)
   })
 })

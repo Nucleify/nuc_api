@@ -14,7 +14,6 @@ export type ApiAuthRoute = (
 export type RouteMatch = {
   method?: string | readonly string[]
   len?: number
-  /** Per-index segment; `undefined` = skip check. */
   path?: readonly (string | undefined)[]
 }
 

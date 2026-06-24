@@ -8,10 +8,6 @@ describe('useApiErrors', () => {
 
   beforeEach(() => {
     flashToast = vi.fn()
-    vi.spyOn(nucleify, 'useAtomicToast').mockReturnValue({
-      flashToast,
-      closeToast: vi.fn(),
-    })
     vi.spyOn(nucleify, 'useApiErrors').mockReturnValue({
       apiErrors: flashToast,
     })

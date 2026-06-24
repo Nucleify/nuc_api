@@ -1,9 +1,7 @@
-import type { CloseDialogType, UseToastInterface } from 'nucleify'
-import { useAtomicToast } from 'nucleify'
+import type { ActionType, CloseDialogType } from 'nucleify'
+import { flashToast } from 'nucleify'
 
 export function useApiSuccess() {
-  const { flashToast }: UseToastInterface = useAtomicToast()
-
   async function apiSuccess(
     response?: unknown,
     getData?: () => Promise<void>,
@@ -22,11 +20,7 @@ export function useApiSuccess() {
       (response as Record<'message', string>)?.message ||
       'Operation completed successfully'
 
-    if (flashToast) {
-      flashToast(message, 'success')
-    } else {
-      console.log(message)
-    }
+    flashToast(message, 'success')
   }
 
   return { apiSuccess }

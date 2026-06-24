@@ -3,15 +3,11 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import * as nucleify from 'nucleify'
 
 describe('useApiSuccess', () => {
-  let apiSuccess: ReturnType<typeof nucleify.useApiSuccess>['apiSuccess'],
-    flashToast: ReturnType<typeof vi.fn>
+  let apiSuccess: ReturnType<typeof nucleify.useApiSuccess>['apiSuccess']
+  let flashToast: ReturnType<typeof vi.fn>
 
   beforeEach(() => {
-    flashToast = vi.fn()
-    vi.spyOn(nucleify, 'useAtomicToast').mockReturnValue({
-      flashToast,
-      closeToast: vi.fn(),
-    })
+    flashToast = vi.spyOn(nucleify, 'flashToast').mockImplementation()
     apiSuccess = nucleify.useApiSuccess().apiSuccess
   })
 

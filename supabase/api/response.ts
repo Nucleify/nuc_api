@@ -1,3 +1,7 @@
+import type { SupabaseErrorLike } from 'nucleify'
+
+import { humanizeSupabaseError } from '../../utils/humanize_supabase_error'
+
 export type ApiHandlerResult =
   | { handled: false }
   | { handled: true; status?: number; body: unknown }
@@ -46,10 +50,10 @@ export function fromScopeError(scope: {
 }
 
 export function fromSupabaseError(
-  error: { message: string },
+  error: SupabaseErrorLike,
   status = 500
 ): ApiHandlerResult {
-  return apiError(status, error.message)
+  return apiError(status, humanizeSupabaseError(error))
 }
 
 export function fromThrown(
@@ -57,5 +61,7 @@ export function fromThrown(
   status = 500,
   fallback = 'Request failed'
 ): ApiHandlerResult {
-  return apiError(status, e instanceof Error ? e.message : fallback)
+  const message =
+    e instanceof Error ? humanizeSupabaseError(e.message) : fallback
+  return apiError(status, message)
 }

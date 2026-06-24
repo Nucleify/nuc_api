@@ -1,9 +1,5 @@
-import type {
-  ApiHandleOptionsInterface,
-  HttpMethodType,
-  UseApiErrorsInterface,
-} from 'nucleify'
-import { apiRequest, useApiErrors } from 'nucleify'
+import type { ApiHandleOptionsInterface, HttpMethodType } from 'nucleify'
+import { apiErrors, apiRequest, resolveApiHandleData } from 'nucleify'
 
 export async function apiHandle<T>({
   url,
@@ -13,27 +9,11 @@ export async function apiHandle<T>({
   setLoading,
   onSuccess,
 }: ApiHandleOptionsInterface<T>): Promise<void> {
-  const { apiErrors }: UseApiErrorsInterface = useApiErrors()
-
   try {
     setLoading?.(true)
 
     const response = await apiRequest<T>(url, method, data, id)
-
-    function hasDataProp(response: unknown): response is { data: T } {
-      return (
-        typeof response === 'object' &&
-        response !== null &&
-        !Array.isArray(response) &&
-        'data' in response
-      )
-    }
-
-    if (hasDataProp(response)) {
-      await onSuccess(response.data)
-    } else {
-      await onSuccess(response)
-    }
+    await onSuccess(resolveApiHandleData<T>(response))
   } catch (error) {
     apiErrors(error)
   } finally {
