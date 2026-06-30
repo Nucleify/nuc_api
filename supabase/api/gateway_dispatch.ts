@@ -5,6 +5,7 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 import type { ApiContext, ApiHandlerResult, Json } from 'nuc_server'
 
 import { handleActivityApi } from '../../../nuc_activity/supabase/api/handle'
+import { handleCalendarApi } from '../../../nuc_calendar/supabase/api/handle'
 import { handleColorsApi } from '../../../nuc_colors/supabase/api/handle'
 import { handleEntitiesApi } from '../../../nuc_entities/supabase/api/handle'
 import { handleStructuralApi } from '../../../nuc_entities_structural/supabase/api/handle'
@@ -25,6 +26,7 @@ export const supabaseApiGatewayHandlers = [
   handleStructuralApi,
   handleFilesApi,
   handleActivityApi,
+  handleCalendarApi,
   handleFriendshipApi,
   handleShareApi,
   handleModulesApi,
