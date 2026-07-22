@@ -1,6 +1,6 @@
-import type { ApiResponseType, HttpMethodType } from 'nucleify'
-
 import { getSupabaseAccessToken } from '../supabase/client'
+import type { HttpMethodType } from '../types/http/functions'
+import type { ApiResponseType } from '../types/response/variables'
 
 const API_PATH_PREFIX = '/api'
 
