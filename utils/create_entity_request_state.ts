@@ -1,13 +1,13 @@
 import { ref } from 'vue'
 
+import type { AppFramework } from './app_framework'
+import { assertAppFramework } from './app_framework'
+
 import type {
   EntityCollectionState,
   EntityRequestState,
   EntityScalarState,
-} from 'nucleify'
-
-import type { AppFramework } from './app_framework'
-import { assertAppFramework } from './app_framework'
+} from '../types/entity/interfaces'
 
 export function createEntityRequestState<T>(
   framework: AppFramework

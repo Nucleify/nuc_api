@@ -2,10 +2,10 @@
 
 import { useState } from 'react'
 
-import type { AuthFormState } from 'nucleify'
-
 import type { AppFramework } from './app_framework'
 import { assertAppFramework } from './app_framework'
+
+import type { AuthFormState } from '../types/auth/interfaces.react'
 
 export function createAuthFormState<
   TLogin extends object,

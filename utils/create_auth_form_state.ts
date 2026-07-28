@@ -1,9 +1,9 @@
 import { type Ref, ref } from 'vue'
 
-import type { AuthFormState } from 'nucleify'
-
 import type { AppFramework } from './app_framework'
 import { assertAppFramework } from './app_framework'
+
+import type { AuthFormState } from '../types/auth/interfaces'
 
 export function createAuthFormState<
   TLogin extends object,

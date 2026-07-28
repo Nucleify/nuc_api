@@ -1,4 +1,4 @@
-import type { EntityCountResultsType, EntityResultsType } from 'nucleify'
+import type { EntityCountResultsType, EntityResultsType } from './variables'
 
 export type EntityRequestState<T> = {
   results: EntityResultsType<T>

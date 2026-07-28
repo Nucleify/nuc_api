@@ -8,23 +8,17 @@ import { handleActivityApi } from '../../../nuc_activity/supabase/api/handle'
 import { handleCalendarApi } from '../../../nuc_calendar/supabase/api/handle'
 import { handleColorsApi } from '../../../nuc_colors/supabase/api/handle'
 import { handleEntitiesApi } from '../../../nuc_entities/supabase/api/handle'
-import { handleStructuralApi } from '../../../nuc_entities_structural/supabase/api/handle'
-import { handleFilesApi } from '../../../nuc_files/supabase/api/handle'
-import { handleFriendshipApi } from '../../../nuc_friendship/supabase/api/handle'
 import { handleLanguagesApi } from '../../../nuc_languages/supabase/api/handle'
 import { handleModulesApi } from '../../../nuc_modules/supabase/api/handle'
 import { handlePagebuilderApi } from '../../../nuc_pagebuilder/supabase/api/handle'
-import { handleShareApi } from '../../../nuc_share/supabase/api/handle'
-import { handleTerminalApi } from '../../../nuc_terminal/supabase/api/handle'
+import { handleFriendshipApi } from '../../../nuc_users/supabase/api/friendship_handle'
 import { handleUsersApi } from '../../../nuc_users/supabase/api/handle'
+import { handleShareApi } from '../../../nuc_users/supabase/api/share_handle'
 
 export const supabaseApiGatewayHandlers = [
-  handleTerminalApi,
   handleUsersApi,
   handleColorsApi,
   handleEntitiesApi,
-  handleStructuralApi,
-  handleFilesApi,
   handleActivityApi,
   handleCalendarApi,
   handleFriendshipApi,

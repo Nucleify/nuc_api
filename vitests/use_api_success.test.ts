@@ -1,14 +1,19 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import * as nucleify from 'nucleify'
+import * as flashToastMod from '../../nuc_modules/utils/flash_toast'
+import { useApiSuccess } from '../utils/use_api_success'
 
 describe('useApiSuccess', () => {
-  let apiSuccess: ReturnType<typeof nucleify.useApiSuccess>['apiSuccess']
-  let flashToast: ReturnType<typeof vi.fn>
+  let apiSuccess: ReturnType<typeof useApiSuccess>['apiSuccess']
+  let flashToast: ReturnType<typeof vi.spyOn>
 
   beforeEach(() => {
-    flashToast = vi.spyOn(nucleify, 'flashToast').mockImplementation()
-    apiSuccess = nucleify.useApiSuccess().apiSuccess
+    flashToast = vi
+      .spyOn(flashToastMod, 'flashToast')
+      .mockImplementation(() => {
+        //
+      })
+    apiSuccess = useApiSuccess().apiSuccess
   })
 
   it('calls flashToast with response message', async () => {
